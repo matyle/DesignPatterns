@@ -20,12 +20,17 @@ type OperationBase[T float64 | int64 | float32 | int] struct {
 type simpleFactory[T float64 | int64 | float32 | int] struct {
 }
 
+// add operator still need modify this
 func (s *simpleFactory[T]) CreateOperation(operator string) Operation[T] {
 	switch operator {
 	case "+":
 		return &OperationAdd[T]{}
 	case "-":
 		return &OperationSub[T]{}
+	case "*":
+		return &OperationMul[T]{}
+	case "/":
+		return &OperationDiv[T]{}
 	default:
 		return nil
 	}
@@ -55,6 +60,27 @@ type OperationSub[T float64 | int64 | float32 | int] struct {
 
 func (o *OperationSub[T]) GetResult() T {
 	return o.Number1 - o.Number2
+}
+
+// mul
+type OperationMul[T float64 | int64 | float32 | int] struct {
+	OperationBase[T]
+}
+
+func (o *OperationMul[T]) GetResult() T {
+	return o.Number1 * o.Number2
+}
+
+// div
+type OperationDiv[T float64 | int64 | float32 | int] struct {
+	OperationBase[T]
+}
+
+func (o *OperationDiv[T]) GetResult() T {
+	if o.Number2 == 0 {
+		return 0
+	}
+	return o.Number1 / o.Number2
 }
 
 func Run[T float64 | int64 | float32 | int](num1, num2 T, operator string) T {
