@@ -78,6 +78,9 @@ func NewCashContext[T float64 | int64](strtegy CashStrategyer[T]) *CashContext[T
 	context.strategy = strtegy
 	return context
 }
+func (this *CashContext[T]) GetCashResult() T {
+	return this.strategy.CalculateCash()
+}
 
 func (this *CashContext[T]) CashContextFactory(conType string) {
 	switch conType {
@@ -90,10 +93,6 @@ func (this *CashContext[T]) CashContextFactory(conType string) {
 		cn.New(10, 3, 0.8)
 		this.strategy = cn
 	}
-}
-
-func (this *CashContext[T]) GetCashResult() T {
-	return this.strategy.CalculateCash()
 }
 
 func CashRun() {
@@ -112,6 +111,7 @@ func CashRun() {
 	//strategy+simplyfactory
 	const (
 		NORMAL = "Normal"
+		REBATE = "Rebate"
 	)
 	contextNormal := new(CashContext[float64])
 	contextNormal.CashContextFactory(NORMAL)
