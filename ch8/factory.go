@@ -1,5 +1,7 @@
 package ch8
 
+import "fmt"
+
 type Operation[T float64 | int64 | float32 | int] interface {
 	SetNumber1(number T)
 	SetNumber2(number T)
@@ -58,6 +60,16 @@ func (o *OperationDiv[T]) GetResult() T {
 	return o.Number1 / o.Number2
 }
 
+// pow
+
+type OperationPow[T float64 | int64 | float32 | int] struct {
+	OperationBase[T]
+}
+
+func (o *OperationPow[T]) GetResult() T {
+	return o.Number1 * o.Number1
+}
+
 // 工厂模式
 type IFactory[T float64 | int64 | float32 | int] interface {
 	CreateOperation() Operation[T]
@@ -90,11 +102,26 @@ func (a *DivFactory[T]) CreateOperation() Operation[T] {
 	return &OperationDiv[T]{}
 }
 
+type PowFactory[T float64 | int64 | float32 | int] struct {
+}
+
+func (a *PowFactory[T]) CreateOperation() Operation[T] {
+	return &OperationPow[T]{}
+}
+
 // client
 func FactoryRun[T float64 | int64 | float32 | int](num1, num2 T) T {
 	factory := &AddFactory[T]{}
 	operation := factory.CreateOperation()
 	operation.SetNumber1(num1)
 	operation.SetNumber2(num2)
+	fmt.Printf("%v + %v = %v\n", num1, num2, operation.GetResult())
+
+	subfactory := &SubFactory[T]{}
+	operation = subfactory.CreateOperation()
+	operation.SetNumber1(num1)
+	operation.SetNumber2(num2)
+	fmt.Printf("%v - %v = %v\n", num1, num2, operation.GetResult())
+
 	return operation.GetResult()
 }
