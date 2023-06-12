@@ -35,7 +35,7 @@ func (ob *OriObserver) Update() {
 	fmt.Printf("Boss is here,%s, %s you need go back work\n", ob.sub.GetAction(), ob.name)
 }
 
-func OriObserverRun() {
+func ObserverV1() {
 	secretary := &OriSecretary{
 		observers: make([]*OriObserver, 0, 10),
 	}

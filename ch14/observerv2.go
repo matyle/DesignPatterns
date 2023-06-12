@@ -57,7 +57,7 @@ func NewNBAObserver(name string, sub *V2Secretary) *NBAObserver {
 	return &NBAObserver{BaseObserver{name, sub}}
 }
 
-func V2ObserverMain() {
+func ObserverV2() {
 	sub := NewV2Secretary()
 	sub.Attach(NewStockObserver("JackMa", sub))
 	sub.Attach(NewNBAObserver("PonyMa", sub))
