@@ -77,12 +77,12 @@ func (e *RestState) String() string {
 	return e.base.v
 }
 func (e *RestState) Handel(c *Context) {
+	//逻辑判断是否转换到下一状态 或者加入参数到下一个状态
 	fmt.Printf("state is %s ", c.state.String())
 	c.state = NewEnergeSate()
 	fmt.Printf("nextstate is %s\n", c.state.String())
 }
 func stateMain() {
 	context := NewContext(NewEnergeSate())
-	context.Request()
 	context.Request()
 }
