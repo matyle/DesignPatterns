@@ -84,7 +84,6 @@ func (j *GameRole) Fight() {
 }
 
 // adminstate
-
 type RoleStateCaretaker struct {
 	memento *RoleStateMemento
 }
