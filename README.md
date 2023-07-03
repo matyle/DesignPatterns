@@ -48,6 +48,17 @@ go test -v .
 
 [建造者模式](./ch13/builder.go)
 
+### 观察者模式
+
+[观察者模式](./ch14/oriobserver.go)
+[观察者模式](./ch14/observerv2.go)
+[观察者模式](./ch14/observerv3.go)
+[委托模式](./ch14/delegate.go)
+
+### 抽象工厂模式
+
+[抽象工厂](./ch15/abfactory.go)
+
 ## 第一章
 
 ### UML 类图
