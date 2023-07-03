@@ -51,8 +51,11 @@ go test -v .
 ### 观察者模式
 
 [观察者模式](./ch14/oriobserver.go)
+
 [观察者模式](./ch14/observerv2.go)
+
 [观察者模式](./ch14/observerv3.go)
+
 [委托模式](./ch14/delegate.go)
 
 ### 抽象工厂模式
